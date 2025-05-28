@@ -1,6 +1,6 @@
 import {createWebHistory, createRouter} from 'vue-router'
 import homeView from '../views/homeView.vue'
-import calendarView from "../views/calendarView.vue";
+import appendView from "../views/appendView.vue";
 import settingsView from "../views/settingsView.vue";
 
 const routes = [
@@ -9,8 +9,8 @@ const routes = [
         component: homeView
     },
   {
-    path: '/calendar',
-    component: calendarView
+    path: '/append',
+    component: appendView
   },
     {
         path: '/settings',

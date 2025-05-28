@@ -6,8 +6,8 @@
     <div class="pt-4 pb-4">
       <ul class="flex flex-row justify-evenly">
         <li>
-          <router-link to="/calendar">
-            <CalendarIcon class="w-9 h-9"
+          <router-link to="/append">
+            <PlusCircleIcon class="w-9 h-9"
                           :class="$route.path === '/calendar' ? 'text-black dark:text-white font-bold' : 'dark:text-gray-600 text-gray-400'"/>
           </router-link>
         </li>
@@ -30,5 +30,5 @@
 
 </template>
 <script setup lang="ts">
-import {HomeIcon, CalendarIcon, Cog6ToothIcon} from "@heroicons/vue/24/outline"
+import {HomeIcon, PlusCircleIcon, Cog6ToothIcon} from "@heroicons/vue/24/outline"
 </script>
