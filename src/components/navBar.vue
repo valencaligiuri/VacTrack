@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="bg-neutral-300 dark:bg-neutral-800 fixed w-full z-20 bottom-0 start-0 border-t border-neutral-500 dark:border-neutral-600"
+    class="bg-neutral-300 dark:bg-neutral-800 sticky w-full z-20 bottom-0 start-0 border-t border-neutral-500 dark:border-neutral-600"
   >
     <div class="pt-4 pb-4">
       <ul class="flex flex-row justify-evenly">
