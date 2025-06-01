@@ -44,12 +44,7 @@
 </template>
 
 <script setup lang="ts">
-import {
-  checkCompleted,
-  clickGoal,
-  createGoal,
-  updateTracker,
-} from "../utils/goal";
+import { checkCompleted, clickGoal, updateTracker } from "../utils/goal";
 import type { Goal } from "../utils/goal";
 import { onMounted, ref } from "vue";
 import { updateGoal } from "../utils/localStorage";
@@ -61,37 +56,37 @@ let goal: Goal;
 
 onMounted(() => {
   goal = updateGoal();
-  console.log(goal.existsGoal);
-  
+
   if (goal.existsGoal === null) {
-    createGoal();
+    tracker.value = 100;
   } else {
     if (goal.existsGoal === true) {
-      tracker.value = 100;
-      console.log("eh2");
-      
+      tracker.value = 100 * (goal.tracker/goal.goalTracker);
     } else {
-      console.log("eh");
-      
-      tracker.value = goal.tracker*(1/goal.goalTracker);
+      tracker.value = 100;
     }
   }
-  checkCompleted(goal.tracker, goalCompleted);
+  checkCompleted(tracker.value, goalCompleted);
 });
 
 const handleRangeInput = () => {
+  goal = updateGoal();
   checkCompleted(tracker.value, goalCompleted);
-  updateTracker(tracker.value);
+
+  updateTracker(tracker.value * (goal.goalTracker / 100));
 };
 
 const handleClickInput = () => {
   goal = updateGoal();
-  if (goalCompleted) {
-    clickGoal(goal.existsGoal, tracker.value);
+  if (tracker.value >= 100) {
+    localStorage.setItem("goal", "false");
+
+    clickGoal(goal.tracker);
     tracker.value = 0;
     goalCompleted.value = false;
-  } else null;
-  checkCompleted(tracker.value, goalCompleted);
+
+    checkCompleted(tracker.value, goalCompleted);
+  }
 };
 </script>
 

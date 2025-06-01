@@ -14,7 +14,6 @@ export const checkCompleted = (
 export const createGoal = () => {
   let goalName = "";
   let goalTracker = 0;
-  localStorage.setItem("goal", "false");
   localStorage.setItem("tracker", "0");
   localStorage.setItem("goalName", "");
   while (goalName === "") {
@@ -24,22 +23,26 @@ export const createGoal = () => {
   while (goalTracker <= 0) {
     goalTracker = parseInt(prompt("Insert $ GOAL") || "0");
   }
+  localStorage.setItem("goal", "true");
   localStorage.setItem("goalTracker", goalTracker.toString());
 };
 
-export const clickGoal = (goal: boolean, tracker: number) => {
-  if (goal) {
-    if (Math.floor(tracker) >= 100) {
-      alert("Congrats!");
-      createGoal();
-    } else {
-      createGoal();
-    }
-  }
+export const clickGoal = (tracker: number) => {
+
+  if (Math.floor(tracker) >= 100) {
+    alert("Congrats!");
+    createGoal();
+    localStorage.setItem("tracker", "0");
+  } else {
+    console.log("chi");
+
+    createGoal();
+    localStorage.setItem("tracker", "0");
+  } 
 };
 
 export type Goal = {
-  existsGoal: boolean;
+  existsGoal: boolean | null;
   goalName: string;
   tracker: number; // o el tipo correcto
   goalTracker: number; // o el tipo correcto
